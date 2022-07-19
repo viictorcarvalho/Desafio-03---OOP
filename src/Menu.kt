@@ -1,8 +1,9 @@
 import Pagamento.Pagamentos
-import Produtos.Produtos
+import carrinho.Carrinho
 import kotlin.system.exitProcess
 
 class Menu {
+ private val carrinho = Carrinho()
 
     fun menuPrimario() {
         while (true) {
@@ -37,10 +38,7 @@ class Menu {
             when(opcao) {
                 1 -> {
                     println("X-Burguer [R\$ 10,00] ")
-                    println(QNT)
-                    val qnt = readln().toIntOrNull()?: 0
-                    val valorParcial = qnt * 10.0
-                    println("Valor parcial: R$ $valorParcial")
+                    carrinho.quantidadeXBurguer()
                     println(MAIS_PRODUTOS)
                     val opcao = readln().toIntOrNull()
                     when(opcao) {
@@ -58,10 +56,7 @@ class Menu {
                 }
                 2 -> {
                     println("X-Salada [R\$ 12,00] ")
-                    println(QNT)
-                    val qnt = readln().toIntOrNull()?: 0
-                    val valorParcial = qnt * 12.00
-                    println("Valor parcial: R$ $valorParcial")
+                    carrinho.quantidadeXSalada()
                     println(MAIS_PRODUTOS)
                     val opcao = readln().toIntOrNull()
                     when (opcao) {
@@ -92,10 +87,7 @@ class Menu {
         when (readln().toIntOrNull()) {
             1 -> {
                 println("Refrigerante [R\$ 8,00] ")
-                println(QNT)
-                val qnt = readln().toIntOrNull()?: 0
-                val valorParcial = qnt * 8.00
-                println("Valor parcial: R$ $valorParcial")
+                carrinho.quantidadeRefrigerante()
                 println(MAIS_PRODUTOS)
                 val opcao = readln().toIntOrNull()
                 when (opcao) {
@@ -113,10 +105,7 @@ class Menu {
             }
             2 -> {
                 println("[2] Suco [R\$ 6,00] ")
-                println(QNT)
-                val qnt = readln().toInt()
-                val valorParcial = qnt * 6.00
-                println("Valor parcial: R$ $valorParcial")
+            carrinho.quantidadeSuco()
                 println(MAIS_PRODUTOS)
                 val opcao = readln().toInt()
                 when (opcao) {
@@ -161,7 +150,7 @@ class Menu {
             }
             4 -> {
                 val pagamentos = Pagamentos()
-                pagamentos.pagamentoEmDinheiro(200.0)
+                pagamentos.pagamentoEmDinheiro(0.0)
                 println(PAGTO_FINALIZADO)
                 exitProcess(0)
             }

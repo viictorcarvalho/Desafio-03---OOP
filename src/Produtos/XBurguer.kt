@@ -1,5 +1,5 @@
 package Produtos
 
-class XBurguer() : Produtos("001", "X-Burguer", 10.0) {
+class XBurguer() : Produtos( "X-Burguer", 10.0, 0) {
 
 }

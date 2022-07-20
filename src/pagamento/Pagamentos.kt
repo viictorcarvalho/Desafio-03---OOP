@@ -1,4 +1,4 @@
-package Pagamento
+package pagamento
 
 class Pagamentos {
 
@@ -14,7 +14,7 @@ class Pagamentos {
             return
         }
         val troco = dinheiroCliente - total
-        println("Seu total foi de $total.")
-        println("Seu troco: $troco")
+        println("Seu total foi de R$$total")
+        println("Seu troco: R$$troco")
     }
 }

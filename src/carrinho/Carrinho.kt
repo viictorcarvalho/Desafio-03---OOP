@@ -1,6 +1,6 @@
 package carrinho
 
-import Produtos.*
+import produtos.*
 import QNT
 
 class Carrinho {
@@ -10,21 +10,21 @@ class Carrinho {
     var suco = Suco()
 
     var codigo = 10
+
     var totalCarrinho = 0.0
 
     private val listaItens = mutableMapOf<Int, Produtos>()
 
-    fun pedirQuantidade(): Int {
+    private fun pedirQuantidade(): Int {
         println(QNT)
         return readln().toIntOrNull() ?: 0
     }
 
-    fun valorParcial(qntd: Int, valorUnitario: Double): Double {
-        val valorParcial = qntd * valorUnitario
-        return valorParcial
+    private fun valorParcial(qntd: Int, valorUnitario: Double): Double {
+        return qntd * valorUnitario
     }
 
-    fun inserirNoCarrinho(produto: Produtos): Int {
+    private fun inserirNoCarrinho(produto: Produtos): Int {
         codigo += 1
         listaItens[codigo] = produto
         return codigo
@@ -89,7 +89,7 @@ class Carrinho {
         println("Total: $totalCarrinho")
     }
 
-    fun somaTotalCarrinho() {
+    private fun somaTotalCarrinho() {
         var soma = 0.0
         listaItens.forEach { codigo, produto ->
             soma += produto.somaTotal

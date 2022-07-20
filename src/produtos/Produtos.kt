@@ -1,4 +1,4 @@
-package Produtos
+package produtos
 
 open class Produtos(
     var nomeProduto: String = "",

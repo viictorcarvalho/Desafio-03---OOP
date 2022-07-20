@@ -1,4 +1,4 @@
-import Pagamento.Pagamentos
+import pagamento.Pagamentos
 import carrinho.Carrinho
 import kotlin.system.exitProcess
 
@@ -30,50 +30,37 @@ class Menu {
         }
     }
 
-    fun menuLanche() {
+    private fun menuMaisProdutos() {
+        println(MAIS_PRODUTOS)
+        when (readln().toIntOrNull()) {
+            1 -> menuPrimario()
+
+            2 -> menuPagamento()
+
+            else -> {
+                println(OPCAO_INVALIDA)
+                menuMaisProdutos()
+            }
+        }
+    }
+
+    private fun menuLanche() {
         while (true) {
             println("Qual lanche você deseja? Temos essas duas opções: ")
             println("[1] X-Burguer [R$ 10,00] ")
             println("[2] X-Salada [R$ 12,00] ")
-            val opcao = readln().toIntOrNull()
-            when (opcao) {
+            when (readln().toIntOrNull()) {
                 1 -> {
                     println("X-Burguer [R\$ 10,00] ")
                     carrinho.quantidadeXBurguer()
                     carrinho.exibirCarrinho()
-                    println(MAIS_PRODUTOS)
-                    val opcao = readln().toIntOrNull()
-                    when (opcao) {
-                        3 -> {
-                            menuPrimario()
-                        }
-                        4 -> {
-                            menuPagamento()
-                        }
-                        else -> {
-                            println(OPCAO_INVALIDA)
-                            println(MAIS_PRODUTOS)
-                        }
-                    }
+                    menuMaisProdutos()
                 }
                 2 -> {
                     println("X-Salada [R\$ 12,00] ")
                     carrinho.quantidadeXSalada()
                     carrinho.exibirCarrinho()
-                    println(MAIS_PRODUTOS)
-                    val opcao = readln().toIntOrNull()
-                    when (opcao) {
-                        3 -> {
-                            menuPrimario()
-                        }
-                        4 -> {
-                            menuPagamento()
-                        }
-                        else -> {
-                            println(OPCAO_INVALIDA)
-                            println(MAIS_PRODUTOS)
-                        }
-                    }
+                    menuMaisProdutos()
                 }
                 else -> {
                     println(ESPACAMENTO)
@@ -84,7 +71,7 @@ class Menu {
         }
     }
 
-    fun menuBebida() {
+    private fun menuBebida() {
         println("Qual bebida você deseja? Temos essas duas opções: ")
         println("[1] Refrigerante [R$ 8,00]")
         println("[2] Suco [R$ 6,00]")
@@ -93,40 +80,13 @@ class Menu {
                 println("Refrigerante [R\$ 8,00] ")
                 carrinho.quantidadeRefrigerante()
                 carrinho.exibirCarrinho()
-                println(MAIS_PRODUTOS)
-                val opcao = readln().toIntOrNull()
-                when (opcao) {
-                    3 -> {
-                        menuPrimario()
-                    }
-                    4 -> {
-                        menuPagamento()
-                    }
-                    else -> {
-                        println(OPCAO_INVALIDA)
-                        println(MAIS_PRODUTOS)
-                    }
-                }
+                menuMaisProdutos()
             }
             2 -> {
                 println("[2] Suco [R\$ 6,00] ")
                 carrinho.quantidadeSuco()
                 carrinho.exibirCarrinho()
-                println(MAIS_PRODUTOS)
-                val opcao = readln().toInt()
-                when (opcao) {
-                    3 -> {
-                        menuPrimario()
-                    }
-                    4 -> {
-                        menuPagamento()
-                    }
-                    else -> {
-                        println(ESPACAMENTO)
-                        println(OPCAO_INVALIDA)
-                        println(MAIS_PRODUTOS)
-                    }
-                }
+                menuMaisProdutos()
             }
             else -> {
                 println(ESPACAMENTO)
@@ -136,7 +96,7 @@ class Menu {
         }
     }
 
-    fun menuPagamento() {
+    private fun menuPagamento() {
         println("Como será a forma de pagamento?")
         println("[1] - Cartão de crédito")
         println("[2] - Cartão de débito")

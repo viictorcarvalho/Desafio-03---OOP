@@ -1,5 +1,3 @@
 package Produtos
 
-class Refrigerante() : Produtos("Refrigerante", 8.0, 0) {
-
-}
+class Refrigerante : Produtos("Refrigerante", 8.0, 0, 0.0)

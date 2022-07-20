@@ -1,5 +1,3 @@
 package Produtos
 
-class XSalada : Produtos( "X-Salada", 12.0, 0) {
-
-}
+class XSalada : Produtos( "X-Salada", 12.0, 0, 0.0)

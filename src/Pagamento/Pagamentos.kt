@@ -1,7 +1,5 @@
 package Pagamento
 
-import PAGTO_FINALIZADO
-
 class Pagamentos {
 
     fun pagamentoEmDinheiro(total : Double) {
@@ -17,7 +15,6 @@ class Pagamentos {
         }
         val troco = dinheiroCliente - total
         println("Seu total foi de $total.")
-        println("Seu troco $troco: $dinheiroCliente - $total.")
-        println(PAGTO_FINALIZADO)
+        println("Seu troco: $troco")
     }
 }

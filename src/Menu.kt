@@ -3,7 +3,7 @@ import carrinho.Carrinho
 import kotlin.system.exitProcess
 
 class Menu {
- private val carrinho = Carrinho()
+    private val carrinho = Carrinho()
 
     fun menuPrimario() {
         while (true) {
@@ -29,19 +29,21 @@ class Menu {
             }
         }
     }
+
     fun menuLanche() {
         while (true) {
             println("Qual lanche você deseja? Temos essas duas opções: ")
             println("[1] X-Burguer [R$ 10,00] ")
             println("[2] X-Salada [R$ 12,00] ")
             val opcao = readln().toIntOrNull()
-            when(opcao) {
+            when (opcao) {
                 1 -> {
                     println("X-Burguer [R\$ 10,00] ")
                     carrinho.quantidadeXBurguer()
+                    carrinho.exibirCarrinho()
                     println(MAIS_PRODUTOS)
                     val opcao = readln().toIntOrNull()
-                    when(opcao) {
+                    when (opcao) {
                         3 -> {
                             menuPrimario()
                         }
@@ -57,6 +59,7 @@ class Menu {
                 2 -> {
                     println("X-Salada [R\$ 12,00] ")
                     carrinho.quantidadeXSalada()
+                    carrinho.exibirCarrinho()
                     println(MAIS_PRODUTOS)
                     val opcao = readln().toIntOrNull()
                     when (opcao) {
@@ -80,6 +83,7 @@ class Menu {
             }
         }
     }
+
     fun menuBebida() {
         println("Qual bebida você deseja? Temos essas duas opções: ")
         println("[1] Refrigerante [R$ 8,00]")
@@ -88,6 +92,7 @@ class Menu {
             1 -> {
                 println("Refrigerante [R\$ 8,00] ")
                 carrinho.quantidadeRefrigerante()
+                carrinho.exibirCarrinho()
                 println(MAIS_PRODUTOS)
                 val opcao = readln().toIntOrNull()
                 when (opcao) {
@@ -105,7 +110,8 @@ class Menu {
             }
             2 -> {
                 println("[2] Suco [R\$ 6,00] ")
-            carrinho.quantidadeSuco()
+                carrinho.quantidadeSuco()
+                carrinho.exibirCarrinho()
                 println(MAIS_PRODUTOS)
                 val opcao = readln().toInt()
                 when (opcao) {
@@ -129,6 +135,7 @@ class Menu {
             }
         }
     }
+
     fun menuPagamento() {
         println("Como será a forma de pagamento?")
         println("[1] - Cartão de crédito")
@@ -150,14 +157,14 @@ class Menu {
             }
             4 -> {
                 val pagamentos = Pagamentos()
-                pagamentos.pagamentoEmDinheiro(0.0)
+                pagamentos.pagamentoEmDinheiro(carrinho.totalCarrinho)
                 println(PAGTO_FINALIZADO)
                 exitProcess(0)
             }
             else -> {
                 println(OPCAO_INVALIDA)
                 menuPagamento()
-                    }
-                }
             }
         }
+    }
+}

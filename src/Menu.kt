@@ -5,6 +5,20 @@ import kotlin.system.exitProcess
 class Menu {
     private val carrinho = Carrinho()
 
+    private fun menuMaisProdutos() {
+        println(MAIS_PRODUTOS)
+        when (readln().toIntOrNull()) {
+            1 -> menuPrimario()
+
+            2 -> menuSecundario()
+
+            else -> {
+                println(OPCAO_INVALIDA)
+                menuMaisProdutos()
+            }
+        }
+    }
+
     fun menuPrimario() {
         while (true) {
             println("O que você gostaria de consumir hoje?")
@@ -26,20 +40,6 @@ class Menu {
                     println(OPCAO_INVALIDA)
                     menuPrimario()
                 }
-            }
-        }
-    }
-
-    private fun menuMaisProdutos() {
-        println(MAIS_PRODUTOS)
-        when (readln().toIntOrNull()) {
-            1 -> menuPrimario()
-
-            2 -> menuPagamento()
-
-            else -> {
-                println(OPCAO_INVALIDA)
-                menuMaisProdutos()
             }
         }
     }
@@ -94,6 +94,48 @@ class Menu {
                 menuBebida()
             }
         }
+    }
+
+    private fun menuSecundario() {
+        println("O que deseja fazer agora?")
+        println("[1] - Editar produtos")
+        println("[2] - Remover produtos")
+        println("[3] - Acrescentar produtos")
+        println("[4] - Finalizar compra")
+        println("[5] - Cancelar compra e sair")
+        when (readln().toIntOrNull()) {
+            1 -> {
+                println("[1] - Editar produtos")
+                carrinho.editarCarrinho()
+                carrinho.exibirCarrinho()
+                menuSecundario()
+            }
+            2 -> {
+                println("[2] - Remover produtos")
+                carrinho.removerItemCarrinho()
+                carrinho.exibirCarrinho()
+
+                menuSecundario()
+            }
+            3 -> {
+                println("[3] - Acrescentar produtos")
+                menuPrimario()
+            }
+            4 -> {
+                println("[4] - Finalizar compra")
+                menuPagamento()
+            }
+            5 -> {
+                println("[5] - Cancelar compra e sair")
+                exitProcess(0)
+            }
+            else -> {
+                println(ESPACAMENTO)
+                println(OPCAO_INVALIDA)
+                menuSecundario()
+            }
+        }
+
     }
 
     private fun menuPagamento() {

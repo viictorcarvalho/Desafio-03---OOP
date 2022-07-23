@@ -1,5 +1,6 @@
 package carrinho
 
+import CODIGO_INVALIDO
 import produtos.*
 import QNT
 
@@ -9,7 +10,7 @@ class Carrinho {
     var refrigerante = Refrigerante()
     var suco = Suco()
 
-    var codigo = 10
+    var codigo = 0
 
     var totalCarrinho = 0.0
 
@@ -84,9 +85,43 @@ class Carrinho {
 
     fun exibirCarrinho() {
         listaItens.forEach { codigo, produto ->
-            println("$codigo - ${produto.nomeProduto} | Qntd: ${produto.qntdProduto} | Valor: ${produto.somaTotal}")
+            println("Código: $codigo | ${produto.nomeProduto} | Qntd: ${produto.qntdProduto} | Valor: ${produto.somaTotal}")
         }
         println("Total: $totalCarrinho")
+    }
+
+    fun editarCarrinho() {
+        val codigoDigitado = selecaoCodigo()
+        if (codigoDigitado in listaItens) {
+            val produto = listaItens[codigoDigitado]
+            if (produto != null) {
+                println("Digite a nova quantidade desejada: ")
+                produto.qntdProduto = readln().toIntOrNull() ?: 0
+                produto.somaTotal = produto.qntdProduto * produto.valorProduto
+            }
+            println("Produto alterado com sucesso!")
+            somaTotalCarrinho()
+        } else {
+            println(CODIGO_INVALIDO)
+            editarCarrinho()
+        }
+    }
+
+    fun removerItemCarrinho() {
+        val codigoDigitado = selecaoCodigo()
+        if (codigoDigitado in listaItens) {
+            listaItens.remove(codigoDigitado)
+            println("Produto removido com sucesso!")
+            somaTotalCarrinho()
+        } else {
+            println(CODIGO_INVALIDO)
+            removerItemCarrinho()
+        }
+    }
+
+    fun selecaoCodigo(): Int {
+        println("Digite o código do produto desejado: ")
+        return readln().toIntOrNull() ?: 0
     }
 
     private fun somaTotalCarrinho() {
